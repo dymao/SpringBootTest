@@ -4,8 +4,11 @@ import com.mervin.dao.UserRepository;
 import com.mervin.domain.User;
 import com.mervin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -34,20 +37,17 @@ public class UserController {
 
     /**
      * 新增用户
-     * @param age
-     * @param name
-     * @param password
      * @return
      */
     @PostMapping(value="/users")
-    public User UserAdd(@RequestParam("age") Integer age,
-                        @RequestParam("name") String name,
-                        @RequestParam("password") String password,User user2){
-        User user = new User();
-        user.setAge(age);
-        user.setName(name);
-        user.setPassword(password);
-        userRepository.save(user2);
+    public User UserAdd(@Valid User user, BindingResult result){
+        if(result.hasErrors()){
+            List<ObjectError> errors = result.getAllErrors();
+            for(ObjectError error: errors){
+                System.out.println(error.getDefaultMessage());
+            }
+            return null;
+        }
         return userRepository.save(user);
     }
 
