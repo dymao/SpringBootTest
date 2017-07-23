@@ -3,6 +3,8 @@ package com.mervin.controller;
 import com.mervin.dao.UserRepository;
 import com.mervin.domain.User;
 import com.mervin.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -19,6 +21,8 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    private final static Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserRepository userRepository;
 
@@ -31,6 +35,7 @@ public class UserController {
      */
     @GetMapping(value="/users")
     public List<User> userList(){
+        log.info("aaaaa");
         return userRepository.findAll();
     }
 
