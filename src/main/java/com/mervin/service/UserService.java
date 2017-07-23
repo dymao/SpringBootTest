@@ -8,8 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Mervin
- * @Description:
- * @date 2017/7/16 17:27
+ * 2017/7/16 17:27
  */
 @Service
 public class UserService {

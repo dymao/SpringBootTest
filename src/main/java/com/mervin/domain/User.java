@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 
 /**
  * @author Mervin
- * @Description:
  * @date 2017/7/13 0:31
  */
 @Entity
